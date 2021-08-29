@@ -2,8 +2,8 @@ import * as sequelize from "sequelize";
 import {VDPFactory} from './vdp.entity';
 
 export const dbConnection = new sequelize.Sequelize(
-    (process.env.DB_NAME = "test"),
-    (process.env.DB_USER = "admin"),
+    (process.env.DB_NAME = "VDPAPI"),
+    (process.env.DB_USER = "postgres"),
     (process.env.DB_PASSWORD = "123456"),
     {
         port: Number(process.env.DB_PORT) || 5433,

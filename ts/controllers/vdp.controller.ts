@@ -110,11 +110,29 @@ export class VDPController {
     }
     // param
     static SelectOne(req: Request, res: Response) {
-        const id = req.params['id'];
+        try {
+            const id = req.params['id'];
+            VDPEntity.findByPk(id).then(r=>{
+                if(r)
+                res.send(r);
+                else
+                res.send(PrintError(null, EMessage.notfound));
+            }).catch(e=>{
+                throw e;
+            })
+        } catch (error) {
+            res.send(PrintError(error,error.message));
+        }
+
     }
     // param
     static SelectMany(req: Request, res: Response) {
-        const id = req.params['ids'];
+        try {
+            const id = req.params['ids'] as unknown as Array<number>;
+        } catch (error) {
+            res.send(PrintError(error,error.message));
+        }
+       
     }
     // query
     static FindOne(req: Request, res: Response) {
