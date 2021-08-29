@@ -19,25 +19,67 @@ export class VDPController {
     public static InsertPDV(vdp: IVDP): Promise<IVDP> {
         return new Promise<IVDP>(async (resolve, reject) => {
             try {
-                VDPController.countPDV(vdp).then(r => {
-                    if(!r){
-                        VDPEntity.create().then(r => {
-                            resolve(r);
-                        }).catch(e => {
-                            reject(e);
+                // insert children
+                if(vdp.parent){
+                    const p = await VDPController.findParent(vdp.parent);
+                    if(p){
+                        VDPController.countPDV(vdp).then(r => {
+                            if(!r){
+                                VDPEntity.create().then(r => {
+                                    resolve(r);
+                                }).catch(e => {
+                                    reject(e);
+                                });
+                            }else{
+                                throw new Error('PDV '+EMessage.exist);
+                            }
+                            
+                        }).catch(ex => {
+                            throw ex;
                         });
                     }else{
-                        throw new Error('PDV '+EMessage.exist);
+                        reject(PrintError(null,'parent '+EMessage.notfound))
                     }
-                    
-                }).catch(ex => {
-                    throw ex;
-                })
+                   
+                }else{
+                     // insert parent
+                     VDPController.countPDV(vdp).then(r => {
+                        if(!r){
+                            VDPEntity.create().then(r => {
+                                resolve(r);
+                            }).catch(e => {
+                                reject(e);
+                            });
+                        }else{
+                            throw new Error('PDV '+EMessage.exist);
+                        }
+                        
+                    }).catch(ex => {
+                        throw ex;
+                    });
+                }
+                
             } catch (error) {
                 reject(error);
             }
 
         });
+    }
+    public static findParent(p:string): Promise<number> {
+        return new Promise<number>(async (resolve, reject) => {
+            try {
+                const v = await VDPEntity.count(
+                    {
+                        where: {
+                            parent: p
+                        }
+                    });
+                resolve(v);
+            } catch (error) {
+                reject(error);
+            }
+        });
+       
     }
     public static countPDV(vdp: IVDP): Promise<number> {
         return new Promise<number>(async (resolve, reject) => {
@@ -56,7 +98,7 @@ export class VDPController {
         });
        
     }
-    
+
     // patch , param
     static Update(req: Request, res: Response) {
         const pdv = req.body as IVDP;
