@@ -6,10 +6,11 @@ export interface IGPSLocation{
 export interface IBase{
     id?:number;
     uuid?:string;
+    isActive?:boolean;
     location?:IGPSLocation;
     polygon?:Array<IGPSLocation>;
     parent?:string;
-    createdAt?:string;
-    updatedAt?:string;
-    deletedAt?:string;
+    createdAt?:Date;
+    updatedAt?:Date;
+    deletedAt?:Date;
 }
