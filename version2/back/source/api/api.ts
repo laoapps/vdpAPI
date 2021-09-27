@@ -23,6 +23,10 @@ app.post('/listOneUser',   UserConroller.listOne);
 app.post('/listPageUser',   UserConroller.listPage);
 app.post('/listAllUser',   UserConroller.listAll);
 
+app.get('/listOneUser',   UserConroller.listOne);
+app.get('/listPageUser',   UserConroller.listPage);
+app.get('/listAllUser',   UserConroller.listAll);
+
 //<=== Category ===>
 app.post('/addcat', AuthorizeController.checkAuthorize, categoryConroller.add);
 app.post('/updatecat', AuthorizeController.checkAuthorize, categoryConroller.update);
@@ -32,6 +36,10 @@ app.post('/listPagecat',   categoryConroller.listPage);
 app.post('/listAllcat',   categoryConroller.listAll);
 app.post('/getAutoIDcat',   categoryConroller.getAutoIDcat);
 
+app.get('/listOnecat',   categoryConroller.listOne);
+app.get('/listPagecat',   categoryConroller.listPage);
+app.get('/listAllcat',   categoryConroller.listAll);
+app.get('/getAutoIDcat',   categoryConroller.getAutoIDcat);
 
 
 //<=== Unit ===>
@@ -43,6 +51,10 @@ app.post('/listPageunit',   unitConroller.listPage);
 app.post('/listAllunit',   unitConroller.listAll);
 app.post('/getAutoIDunit',   unitConroller.getAutoIDunit);
 
+app.get('/listOneunit',   unitConroller.listOne);
+app.get('/listPageunit',   unitConroller.listPage);
+app.get('/listAllunit',   unitConroller.listAll);
+app.get('/getAutoIDunit',   unitConroller.getAutoIDunit);
 
 
 //<=== Product ===>
@@ -55,6 +67,11 @@ app.post('/listAllproduct',   productConroller.listAll);
 app.post('/getAutoIDproduct',   productConroller.getAutoIDproduct);
 app.post('/listAllSbyid',   productConroller.listAllSbyid);
 
+app.get('/listOneproduct',   productConroller.listOne);
+app.get('/listPageproduct',   productConroller.listPage);
+app.get('/listAllproduct',   productConroller.listAll);
+app.get('/getAutoIDproduct',   productConroller.getAutoIDproduct);
+app.get('/listAllSbyid',   productConroller.listAllSbyid);
 
 
 //<=== Staff ===>
@@ -66,6 +83,10 @@ app.post('/listPagestaff',   StaffConroller.listPage);
 app.post('/listAllstaff',   StaffConroller.listAll);
 app.post('/getAutoID',   StaffConroller.getAutoID);
 
+app.get('/listOnestaff',   StaffConroller.listOne);
+app.get('/listPagestaff',   StaffConroller.listPage);
+app.get('/listAllstaff',   StaffConroller.listAll);
+app.get('/getAutoID',   StaffConroller.getAutoID);
 
 //<=== province ===>
 app.post('/addprovince', AuthorizeController.checkAuthorize, provinceConroller.add);
@@ -76,6 +97,10 @@ app.post('/listPageprovince',   provinceConroller.listPage);
 app.post('/listAllprovince',   provinceConroller.listAll);
 app.post('/getAutoIDprovince',   provinceConroller.getAutoIDprovince);
 
+app.get('/listOneprovince',   provinceConroller.listOne);
+app.get('/listPageprovince',   provinceConroller.listPage);
+app.get('/listAllprovince',   provinceConroller.listAll);
+app.get('/getAutoIDprovince',   provinceConroller.getAutoIDprovince);
 
 //<=== district ===>
 app.post('/adddistrict', AuthorizeController.checkAuthorize, districtConroller.add);
@@ -89,6 +114,14 @@ app.post('/getAutoIDdistrict',   districtConroller.getAutoIDdistrict);
 app.post('/getDistrict_by_provinceID',   districtConroller.getDistrict_by_provinceID);
 
 
+app.get('/listOnedistrict',   districtConroller.listOne);
+app.get('/listPagedistrict',   districtConroller.listPage);
+app.get('/listAlldistrict',   districtConroller.listAll);
+app.get('/getAutoIDdistrict',   districtConroller.getAutoIDdistrict);
+
+app.get('/getDistrict_by_provinceID',   districtConroller.getDistrict_by_provinceID);
+
+
 
 
 //<=== village ===>
@@ -99,8 +132,13 @@ app.post('/listOnevillage',  villageConroller.listOne);
 app.post('/listPagevillage',  villageConroller.listPage);
 app.post('/listAllvillage',  villageConroller.listAll);
 app.post('/getAutoIDvillage', villageConroller.getAutoIDvillage);
-
 app.post('/getVillage_by_districtID', villageConroller.getVillage_by_districtID);
+
+app.get('/listOnevillage',  villageConroller.listOne);
+app.get('/listPagevillage',  villageConroller.listPage);
+app.get('/listAllvillage',  villageConroller.listAll);
+app.get('/getAutoIDvillage', villageConroller.getAutoIDvillage);
+app.get('/getVillage_by_districtID', villageConroller.getVillage_by_districtID);
 
 export = app;
 
