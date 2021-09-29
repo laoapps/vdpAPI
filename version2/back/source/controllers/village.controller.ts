@@ -78,15 +78,7 @@ console.log(data);
           });
       }
   }
-  public static listOne(req: Request, res: Response) {
 
-    const data = req.body as villageModel;
-
-        const sql = `select vill_id,vill_name,vill_name_en,dr_name,dr_name_en from village v inner join dristric d on v.dr_id=d.dr_id where vill_name like'%${data.vill_name}%' or vill_name_en like'%${data.vill_name_en}%' or dr_name like'%${data.dr_name}%' or dr_name_en like'%${data.dr_name_en}%'`;
-        Databases.selectOne(sql).then(result => {
-            res.send(result)
-        });
-}
 public static getVillage_by_districtID(req: Request, res: Response) {
 
     const data = req.body as villageModel;
@@ -95,6 +87,20 @@ public static getVillage_by_districtID(req: Request, res: Response) {
         Databases.selectOne(sql).then(result => {
             res.send(result)
         });
+}
+public static listPage_by(req: Request, res: Response) {
+
+    const data = req.body as villageModel;
+    const page = data.page ? data.page : 1;
+    const limit = data.limit ? data.limit : 10;
+    const offset = (page - 1) * limit;
+
+    const sqlCount = "select count(*) as count from village";
+    const sqlPage = `select vill_id,vill_name,vill_name_en,dr_name,dr_name_en from village v inner join dristric d on v.dr_id=d.dr_id where vill_name like'%${data.vill_name}%' or vill_name_en like'%${data.vill_name_en}%' or dr_name like'%${data.dr_name}%' or dr_name_en like'%${data.dr_name_en}%' limit ${limit} offset ${offset} `;
+
+    Databases.selectPage(sqlCount, sqlPage).then(result => {
+        res.send(result)
+    });
 }
     public static listPage(req: Request, res: Response) {
 
@@ -124,6 +130,14 @@ public static getVillage_by_districtID(req: Request, res: Response) {
     const sql = `select max(vill_id) as vill_id from village`;
 
     Databases.getAutoID(sql).then(result => {
+        res.send(result)
+    });
+}
+public static listAllSbyvid(req: Request, res: Response) {
+
+    const data = req.body as villageModel;
+    const sql = `select * from village where vill_id='${data.vill_id}'`;
+    Databases.selectOne(sql).then(result => {
         res.send(result)
     });
 }

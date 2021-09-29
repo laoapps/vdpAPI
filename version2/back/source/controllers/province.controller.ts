@@ -78,14 +78,20 @@ console.log(data);
           });
       }
   }
-  public static listOne(req: Request, res: Response) {
+ 
+public static listPage_by(req: Request, res: Response) {
 
     const data = req.body as provinceModel;
+    const page = data.page ? data.page : 1;
+    const limit = data.limit ? data.limit : 10;
+    const offset = (page - 1) * limit;
 
-        const sql = `select * from province where pr_name like'%${data.pr_name}%' or pr_name_en like'%${data.pr_name_en}%' or pr_id like'%${data.pr_id}%'`;
-        Databases.selectOne(sql).then(result => {
-            res.send(result)
-        });
+    const sqlCount = "select count(*) as count from province";
+    const sqlPage = `select * from province where pr_name like'%${data.pr_name}%' or pr_name_en like'%${data.pr_name_en}%' or pr_id like'%${data.pr_id}%' limit ${limit} offset ${offset} `;
+
+    Databases.selectPage(sqlCount, sqlPage).then(result => {
+        res.send(result)
+    });
 }
     public static listPage(req: Request, res: Response) {
 

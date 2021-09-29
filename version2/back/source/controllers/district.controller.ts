@@ -78,15 +78,7 @@ console.log(data);
           });
       }
   }
-  public static listOne(req: Request, res: Response) {
 
-    const data = req.body as districtModel;
-
-        const sql = `select dr_id,dr_name,dr_name_en,pr_name,pr_name_en from dristric d inner join province p on d.pr_id=p.pr_id where dr_name like'%${data.dr_name}%' or dr_name_en like'%${data.dr_name_en}%' or pr_name like'%${data.pr_name}%' or pr_name_en like'%${data.pr_name_en}%'`;
-        Databases.selectOne(sql).then(result => {
-            res.send(result)
-        });
-}
   public static getDistrict_by_provinceID(req: Request, res: Response) {
 
     const data = req.body as districtModel;
@@ -110,6 +102,20 @@ console.log(data);
           res.send(result)
       });
   }
+    public static listPage_by(req: Request, res: Response) {
+
+      const data = req.body as districtModel;
+      const page = data.page ? data.page : 1;
+      const limit = data.limit ? data.limit : 10;
+      const offset = (page - 1) * limit;
+
+      const sqlCount = "select count(*) as count from dristric";
+      const sqlPage = `select dr_id,dr_name,dr_name_en,pr_name,pr_name_en from dristric d inner join province p on d.pr_id=p.pr_id where dr_name like'%${data.dr_name}%' or dr_name_en like'%${data.dr_name_en}%' or pr_name like'%${data.pr_name}%' or pr_name_en like'%${data.pr_name_en}%' limit ${limit} offset ${offset} `;
+
+      Databases.selectPage(sqlCount, sqlPage).then(result => {
+          res.send(result)
+      });
+  }
   public static listAll(req: Request, res: Response) {
 
       const sql = `select * from dristric`;
@@ -124,6 +130,14 @@ console.log(data);
     const sql = `select max(dr_id) as dr_id from dristric`;
 
     Databases.getAutoID(sql).then(result => {
+        res.send(result)
+    });
+}
+public static listAllSbydid(req: Request, res: Response) {
+
+    const data = req.body as districtModel;
+    const sql = `select * from dristric where dr_id='${data.dr_id}'`;
+    Databases.selectOne(sql).then(result => {
         res.send(result)
     });
 }
