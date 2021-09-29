@@ -1,0 +1,98 @@
+
+<section class=" row mt-4">
+    <div class="col-md-8">
+        <h2>ຈັດການຂໍ້ມູນເມືອງ</h2>
+    </div>
+    <div class="col-md-4 mt-2">
+        <h4>ມີທັງໝົດ {{count}} ເມືອງ</h4>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div class="card">
+            <div class="card-body">
+  
+  
+  
+               <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modal-d-new"><i class="fas fa-plus"></i> ສ້າງຂໍ້ມູນໃໝ່</button>
+                    </div>
+                    <div class="col-md-6 search">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input (keyup)="searchByid_name($event)" type="text" class="form-control" placeholder="ຄົ້ນຫາຕາມຊື່ເມືອງ,ຊື່ແຂວງ">
+                        </div>
+                    </div>
+               </div>
+           
+  
+  
+  
+               <div class="table-responsive mt-3">
+                <table class="table table-striped mt-4">
+                  <thead>
+                      <tr class="font-weight-bold">
+                          <td>ລຳດັບ</td>
+                          <td>ລະຫັດເມືອງ</td>
+                          <td>ຊື່ເມືອງ</td>
+                          <td>ຊື່ເມືອງ(ອັງກິດ)</td>
+                          <td>ຊື່ແຂວງ</td>
+                          <td>ຊື່ແຂວງ(ອັງກິດ)</td>                     
+                          <td>Action</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of district_list ; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{item.dr_id}}</td>
+                          <td>{{item.dr_name}}</td>
+                          <td>{{item.dr_name_en}}</td>
+                          <td>{{item.pr_name}}</td>
+                          <td>{{item.pr_name_en}}</td>
+                          <td>
+                              <button (click)="binddata(item.dr_id)" class="btn btn-warning text-white mr-1" data-toggle="modal" data-target="#modal-d-edit"><i class="fas fa-pencil-alt"></i></button>
+                              <button class="btn btn-danger text-white" (click)="remove(item.dr_id)"><i class="fas fa-trash-alt"></i></button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+               </div>
+         
+  
+  
+  
+  
+               <div class="col-md-12 mt-3">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </nav>
+                </div>
+
+  
+  
+  
+  
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <app-district-new (callFunctionLoadFromParent)="loaddistrict()"></app-district-new>
+  <app-district-edit #N (callFunctionLoadFromParent)="loaddistrict()"></app-district-edit>

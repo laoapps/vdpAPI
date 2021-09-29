@@ -1,0 +1,36 @@
+<aside [ngClass]="input_setSidebarState ? 'sidebar-navigation hidden' : 'sidebar-navigation'">
+
+    <!-- vdp information -->
+    <a href="javascript:void(0)" class="sidebar-menu-item dropdown  mt-5"  data-toggle="collapse" data-target="#dropdown-vdp-information">
+        <div class="left">
+            <span class="sidebar-menu-item-icon"><i class="fas fa-database"></i></span>
+        <span class="sidebar-menu-item-text">ຈັດການຂໍ້ມູນເຂດປົກຄອງ</span>
+        </div>
+        <div class="right">
+            <span class="sidebar-menu-item-arrow"><i class="fas fa-angle-left"></i></span>
+        </div>
+    </a>
+    <div class="collapse" id="dropdown-vdp-information">
+        <a routerLink="province" class="sidebar-menu-item-dropdown">
+            <span class="sidebar-menu-item-icon"><i class="fas fa-angle-right"></i></span>
+            <span class="sidebar-menu-item-text">ຂໍ້ມູນແຂວງ</span>
+        </a>
+        <a routerLink="district" class="sidebar-menu-item-dropdown">
+            <span class="sidebar-menu-item-icon"><i class="fas fa-angle-right"></i></span>
+            <span class="sidebar-menu-item-text">ຂໍ້ມູນເມືອງ</span>
+        </a>
+        <a routerLink="village" class="sidebar-menu-item-dropdown">
+            <span class="sidebar-menu-item-icon"><i class="fas fa-angle-right"></i></span>
+            <span class="sidebar-menu-item-text">ຂໍ້ມູນບ້ານ</span>
+        </a>
+    </div>
+    <!-- end of product information -->
+
+       
+
+         <!-- logout -->
+    <!-- <a (click)="logout()" class="sidebar-menu-item">
+        <span class="sidebar-menu-item-icon"><i class="fas fa-close"></i></span>
+        <span class="sidebar-menu-item-text">ອອກຈາກລະບົບ</span>
+    </a> -->
+</aside>

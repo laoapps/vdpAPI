@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    /* font-family: 'BoonHome'; */
+    font-family: 'saysettha OT';
+    background: #f1f1f1;
+}
+
+.card-theme {
+    margin-top: 100px;
+    width: 100%;
+    color: red;
+    background: #fff;
+    height: 500px;
+    border-top: 2px solid red;
+    border-bottom: 1px solid #f1f1f1;
+}

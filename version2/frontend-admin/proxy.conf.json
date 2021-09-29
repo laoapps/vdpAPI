@@ -1,0 +1,9 @@
+{
+    "/api":{
+        "target":"http://laotracking.com:23000",
+        "secure": false,
+        "pathRewrite": {"^/api" : ""},
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

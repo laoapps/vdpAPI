@@ -1,0 +1,15 @@
+<div class="app-container">
+    <div class="app-header">
+        <app-navbar (output_setSidebarState)="animateToggleSidebar($event)"></app-navbar>
+    </div>
+    <div class="app-main">
+        <section class="app-main-left">
+            <app-sidebar [input_setSidebarState]="setSidebarState"></app-sidebar>
+        </section>
+        <section class="app-main-right">
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </section>
+    </div>
+</div>

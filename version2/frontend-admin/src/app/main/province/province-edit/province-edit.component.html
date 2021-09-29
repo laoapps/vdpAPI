@@ -1,0 +1,28 @@
+<div class="modal fade" id="modal-province-edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header mt-3">
+                <h3>ແກ້ໄຂຂໍ້ມູນແຂວງ</h3>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="form-group">
+                        <label for="">ລະຫັດແຂວງ</label>
+                        <input type="text" class="form-control" [(ngModel)]="pr_id" [ngModelOptions]="{standalone: true}" readonly disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="">ຊື່ແຂວງ</label>
+                        <input type="text" class="form-control" [(ngModel)]="pr_name" [ngModelOptions]="{standalone: true}"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="">ຊື່ແຂວງ(ອັງກິດ)</label>
+                        <input type="text" class="form-control" [(ngModel)]="pr_name_en" [ngModelOptions]="{standalone: true}" (keyup.enter)="update()">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-warning text-white" (click)="update()"  data-dismiss="modal" >ບັນທຶກ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

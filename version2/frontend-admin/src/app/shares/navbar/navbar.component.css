@@ -1,0 +1,172 @@
+.navbar-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.5);
+    max-height: 60px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* <=== navbar logo ===> */
+.navbar-navigation .navbar-logo-container {
+    position: relative;
+    float: left;
+    line-height: 60px;
+    width: 250px;
+    text-align: center;
+}
+.navbar-navigation .navbar-logo-container .navbar-logo {
+    color: #333;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.navbar-navigation .navbar-logo-container .navbar-logo span {
+    color: #3498DB;
+}
+/* <=== end navbar logo ===> */
+
+/* <=== toggle sidebar ===> */
+.navbar-navigation .navbar-toggle-sidebar {
+    position:relative;
+    float: left;
+}
+.navbar-navigation  .navbar-toggle-sidebar .toggle-sidebar {
+    color: #3498DB;
+    width: 50px;
+    line-height: 62px;
+}
+/* <=== end toggle sidebar ===> */
+
+/* <=== toggle sidebar small ===> */
+.navbar-navigation .navbar-toggle-sidebar-small {
+    position:relative;
+    float: right;
+    text-align: center;
+    width: 50px;
+    display: none;
+}
+.navbar-navigation  .navbar-toggle-sidebar-small .toggle-sidebar-small {
+    color: #3498DB;
+    width: 50px;
+    line-height: 62px;
+}
+/* <=== end toggle sidebar small ===> */
+
+/* navbar navigation small */
+.navbar-navigation-small {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+
+    background: #fff;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.5);
+    height: 0px;
+    transition: .3s;
+    overflow: hidden;
+    z-index: 2;
+}
+.navbar-navigation-small.active {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.navbar-navigation-small .navbar-menu-item {
+    display: flex;
+    color: #666;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: 15px;
+    transition: .2s;
+    border-bottom: 1px solid #f1f1f1;
+    min-width: 250px;
+}
+
+.navbar-navigation-small .navbar-menu-item .navbar-menu-item-text {
+    padding-left: 10px;
+}
+
+.navbar-navigation-small .navbar-menu-item:hover {
+    background: #3498DB;
+    color: #fff;
+    border-bottom: 1px solid #AED6F1;
+}
+/* end of navigation small */
+
+/* <=== navbar menu item dropdown ===> */
+.navbar-navigation-small .navbar-menu-item.dropdown {
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-navigation-small .navbar-menu-item.dropdown .left{
+    display: flex;
+    color: #666;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: .2s;
+    
+}
+.navbar-navigation-small .navbar-menu-item.dropdown .right .navbar-menu-item-arrow{
+    padding-right: 15px;
+    line-height: 42px;
+}
+.navbar-navigation-small .navbar-menu-item-dropdown {
+    display: flex;
+    color: #666;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: 38px;
+    transition: .2s;
+    border-bottom: 1px solid #f1f1f1;
+    min-width: 250px;
+}
+.navbar-navigation-small .navbar-menu-item-dropdown .navbar-menu-item-text {
+    padding-left: 10px;
+}
+.navbar-navigation-small .navbar-menu-item-dropdown:hover {
+    color: #000;
+}
+.navbar-navigation-small .navbar-menu-item-arrow i {
+    transition: .3s;
+}
+.navbar-navigation-small .navbar-menu-item-arrow.active > i  {
+    transform: rotate(268deg);
+}
+.navbar-navigation-small .navbar-menu-item.dropdown:hover > .navbar-menu-item.dropdown {
+    background: #AED6F1;
+    color: #fff;
+}
+.navbar-navigation-small .navbar-menu-item.dropdown:hover > .left{
+   color: #fff;
+}
+/* <=== end navbar menu item dropdown ===> */
+
+@media screen and (min-width:778px) {
+    .navbar-navigation-small{
+        display: none;
+    }
+}
+
+@media screen and (max-width:778px) {
+    .navbar-navigation .navbar-toggle-sidebar{
+        display: none;
+    }
+
+    .navbar-navigation .navbar-toggle-sidebar-small {
+        display: inline;
+    }
+}

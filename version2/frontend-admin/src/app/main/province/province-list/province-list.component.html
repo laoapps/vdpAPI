@@ -1,0 +1,95 @@
+<section class=" row mt-4">
+    <div class="col-md-8">
+        <h2>ຈັດການຂໍ້ມູນແຂວງ</h2>
+    </div>
+    <div class="col-md-4 mt-2">
+        <h4>ມີທັງໝົດ {{count}} ແຂວງ</h4>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div class="card">
+            <div class="card-body">
+
+
+
+                <!-- header form -->
+               <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modal-province-new"><i class="fas fa-plus"></i> ສ້າງຂໍ້ມູນໃໝ່</button>
+                    </div>
+                    <div class="col-md-6 search">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input type="text" (keyup)="searchByid_name($event)" class="form-control" placeholder="ຄົ້ນຫາຕາມຊື່ແຂວງ">
+                        </div>
+                    </div>
+               </div>
+               <!-- end of header form -->
+
+
+
+               <!-- table -->
+               <div class="table-responsive mt-3">
+                   <table class="table table-striped">
+                       <thead>
+                           <tr class="font-weight-bold">
+                            <td>ລະຫັດແຂວງ</td>
+                            <td>ຊື່ແຂວງ</td>
+                            <td>ຊື່ແຂວງ(ອັງກິດ)</td>
+                            <td>Action</td>
+                           </tr>
+                       </thead>
+                       <tbody>
+                        <tr *ngFor="let item of province_list">
+                            <td>{{item.pr_id}}</td>
+                            <td>{{item.pr_name}}</td>
+                            <td>{{item.pr_name_en}}</td>
+                            <td width="15%">
+                                <button (click)="binddata(item.pr_id,item.pr_name,item.pr_name_en)" class="btn btn-warning text-white  mr-1" data-toggle="modal" data-target="#modal-province-edit"><i class="fas fa-pencil-alt"></i></button>
+                                <button (click)="remove(item.pr_id)" class="btn btn-danger text-white" ><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>         
+                       </tbody>
+                   </table>
+               </div>
+               <!-- end of table -->
+
+
+
+
+               <!-- paging -->
+               <div class="col-md-12 mt-3">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- end of paging -->
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- -->
+
+<app-province-new (callFunctionLoadFromParent)="loadprovince()"></app-province-new>
+<app-province-edit #edit [pr_id]="pr_id" [pr_name]="pr_name" [pr_name_en]="pr_name_en" (callFunctionLoadFromParent)="loadprovince()"></app-province-edit> 

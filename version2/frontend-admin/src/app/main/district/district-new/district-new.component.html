@@ -1,0 +1,39 @@
+<div class="modal fade" id="modal-d-new">
+    <div class="modal-dialog">
+        <div class="modal-content">
+             <div class="modal-header mt-3">
+                <h3>ເພີ່ມຂໍ້ມູນເມືອງ</h3>
+            </div>
+             <div class="modal-body">
+                <form class="row g-3">
+                    <div class="col-6 mb-4">
+                        <label class="form-label">ລະຫັດເມືອງ</label>
+                        <input [(ngModel)]="dr_id" [ngModelOptions]="{standalone: true}" type="text" class="form-control" readonly disabled>                  
+                    </div>
+                    <div class="col-6  mb-4">
+                        <label class="form-label">ຊື່ເມືອງ *</label>
+                        <input [(ngModel)]="dr_name" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                    </div>
+                    <div class="col-6  mb-4">
+                        <label class="form-label">ຊື່ເມືອງ(ອັງກິດ)</label>
+                        <input [(ngModel)]="dr_name_en" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                    </div>
+                    <div class="col-6  mb-4">
+                        <label class="form-label">ຊື່ແຂວງ *</label>
+                        <select  class="form-control" [(ngModel)]="pr_id" [ngModelOptions]="{standalone: true}">
+                            <option value="">--ເລືອກແຂວງ--</option>
+                            <option *ngFor="let item of province_list" [(ngValue)]="item.pr_id">{{item.pr_name}}</option>
+
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-success" (click)="add()" data-dismiss="modal">ບັນທຶກ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+   <!----> 
+  
+  

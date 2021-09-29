@@ -1,0 +1,23 @@
+.app-main {
+    position: relative;
+    top: 60px;
+    display: flex;
+}
+
+.app-main-right {
+    width: 100%;
+    position: relative;
+    margin-left: 250px;
+    transition: .3s;
+    overflow: hidden;
+}
+
+.app-main-right.full {
+    margin-left: 0px;
+}
+
+@media screen and (max-width:778px) {
+    .app-main-right {
+        margin-left: 0px;
+    }
+}

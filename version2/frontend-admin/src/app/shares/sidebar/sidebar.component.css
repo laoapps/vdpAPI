@@ -1,0 +1,103 @@
+.sidebar-navigation {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 60px;
+    width: 250px;
+    background: #2C3E50;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: .3s;
+}
+.sidebar-navigation.hidden {
+    width: 0px;
+}
+
+
+/* <=== sidebar menu item ===> */
+.sidebar-navigation .sidebar-menu-item {
+    display: flex;
+    color: #C6C4CC;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: 15px;
+    transition: .2s;
+    border-bottom: 1px solid #34495E;
+    min-width: 250px;
+}
+
+.sidebar-navigation .sidebar-menu-item .sidebar-menu-item-text {
+    padding-left: 10px;
+}
+
+.sidebar-navigation .sidebar-menu-item:hover {
+    background: #3498DB;
+    color: #fff;
+    border-bottom: 1px solid #AED6F1;
+}
+/* <=== end sidebar menu item ===> */
+
+/* <=== sidebar menu item dropdown ===> */
+.sidebar-navigation .sidebar-menu-item.dropdown {
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar-navigation .sidebar-menu-item.dropdown .left{
+    display: flex;
+    color: #C6C4CC;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: .2s;
+    
+}
+.sidebar-navigation .sidebar-menu-item.dropdown .right .sidebar-menu-item-arrow{
+    padding-right: 15px;
+    line-height: 42px;
+}
+.sidebar-navigation .sidebar-menu-item-dropdown {
+    display: flex;
+    color: #C6C4CC;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: 38px;
+    transition: .2s;
+    border-bottom: 1px solid #34495E;
+    min-width: 250px;
+}
+.sidebar-navigation .sidebar-menu-item-dropdown .sidebar-menu-item-text {
+    padding-left: 10px;
+}
+.sidebar-navigation .sidebar-menu-item-dropdown:hover {
+    color: #fff;
+}
+.sidebar-navigation .sidebar-menu-item-arrow i {
+    transition: .3s;
+}
+.sidebar-navigation .sidebar-menu-item-arrow.active > i  {
+    
+    transform: rotate(268deg);
+}
+.sidebar-navigation .sidebar-menu-item.dropdown:hover > .sidebar-menu-item.dropdown {
+    background: #AED6F1;
+    color: #fff;
+}
+.sidebar-navigation .sidebar-menu-item.dropdown:hover > .left{
+   color: #fff;
+}
+/* <=== end sidebar menu item dropdown ===> */
+
+@media screen and (max-width:778px) {
+    .sidebar-navigation {
+        width: 0;
+    }
+}

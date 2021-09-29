@@ -1,0 +1,94 @@
+
+<section class=" row mt-4">
+    <div class="col-md-8">
+        <h2>ຈັດການຂໍ້ມູນບ້ານ</h2>
+    </div>
+    <div class="col-md-4 mt-2">
+        <!-- <p class="text-muted tap-history text-danger">ມີທັງໝົດ {{count}} ບ້ານ</p> -->
+        <h4>ມີທັງໝົດ {{count}} ບ້ານ</h4>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div class="card">
+            <div class="card-body">
+  
+  
+  
+               <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modal-vill-new"><i class="fas fa-plus"></i> ສ້າງຂໍ້ມູນໃໝ່</button>
+                    </div>
+                    <div class="col-md-6 search">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input (keyup)="searchByid_name($event)" type="text" class="form-control" placeholder="ຄົ້ນຫາ">
+                        </div>
+                    </div>
+               </div>
+  
+  
+  
+               <div class="table-responsive mt-3">
+                <table class="table table-striped mt-4">
+                  <thead>
+                      <tr class="font-weight-bold">
+                          <td>ລະຫັດບ້ານ</td>
+                          <td>ຊື່ບ້ານ</td>
+                          <td>ຊື່ບ້ານ(ອັງກິດ)</td>
+                          <td>ຊື່ເມືອງ</td>
+                          <td>ຊື່ເມືອງ(ອັງກິດ)</td>                     
+                          <td>Action</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of village_list">
+                          <td>{{item.vill_id}}</td>
+                          <td>{{item.vill_name}}</td>
+                          <td>{{item.vill_name_en}}</td>
+                          <td>{{item.dr_name}}</td>
+                          <td>{{item.dr_name_en}}</td>
+                          <td>
+                              <button (click)="binddata(item.vill_id)" class="btn btn-warning text-white mr-1" data-toggle="modal" data-target="#modal-vill-edit"><i class="fas fa-pencil-alt"></i></button>
+                              <button class="btn btn-danger text-white" (click)="remove(item.vill_id)"><i class="fas fa-trash-alt"></i></button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+               </div>
+  
+  
+  
+  
+               <div class="col-md-12 mt-3">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </nav>
+                </div>
+  
+  
+  
+  
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <app-village-new (callFunctionLoadFromParent)="loadvill()"></app-village-new>
+  <app-village-edit #N (callFunctionLoadFromParent)="loadvill()"></app-village-edit>

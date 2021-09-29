@@ -1,0 +1,44 @@
+<div class="modal fade" id="modal-vill-edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+             <div class="modal-header mt-3">
+                <h3>ແກ້ໄຂຂໍ້ມູນບ້ານ</h3>
+            </div>
+             <div class="modal-body">
+                <form class="row g-3">
+                    <div class="col-6 mb-4">
+                        <label class="form-label">ລະຫັດບ້ານ</label>
+                        <input [(ngModel)]="vill_id" [ngModelOptions]="{standalone: true}" type="text" class="form-control" disabled readonly>                    
+                    </div>
+                    <div class="col-6  mb-4">
+                        <label class="form-label">ຊື່ບ້ານ *</label>
+                        <input [(ngModel)]="vill_name" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                    </div>
+                    <div class="col-6  mb-4">
+                        <label class="form-label">ຊື່ບ້ານ(ອັງກິດ)</label>
+                        <input [(ngModel)]="vill_name_en" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                    </div>
+                    <!-- <div class="col-6  mb-4">
+                        <label class="form-label">ແຂວງ *</label>
+                        <select  class="form-control" [(ngModel)]="pr_id" [ngModelOptions]="{standalone: true}" (change)="loaddistrict()">
+                            <option value="">--ເລືອກແຂວງເພື່ອໃຫ້ງ່າຍຕໍ່ການເລືອກເມືອງ--</option>
+                            <option *ngFor="let item of province_list" [(ngValue)]="item.pr_id">{{item.pr_name}}</option>
+                        </select>
+                    </div> -->
+                    <div class="col-12  mb-4">
+                        <label class="form-label">ຊື່ເມືອງ *</label>
+                        <select class="form-control" [(ngModel)]="dr_id" [ngModelOptions]="{standalone: true}">
+                            <!-- <option value="">--ເລືອກແຂວງກ່ອນ--</option> -->
+                            <option *ngFor="let item of district_list" [(ngValue)]="item.dr_id">{{item.dr_name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-warning" (click)="update()" data-dismiss="modal">ບັນທຶກ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  
