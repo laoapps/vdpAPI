@@ -107,7 +107,9 @@ public static listPage_by(req: Request, res: Response) {
       const data = req.body as villageModel;
       const page = data.page ? data.page : 1;
       const limit = data.limit ? data.limit : 10;
+      
       const offset = (page - 1) * limit;
+
 
       const sqlCount = "select count(*) as count from village";
       const sqlPage = `select vill_id,vill_name,vill_name_en,dr_name,dr_name_en from village v inner join dristric d on v.dr_id=d.dr_id limit ${limit} offset ${offset} `;

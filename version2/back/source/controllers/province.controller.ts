@@ -95,9 +95,10 @@ public static listPage_by(req: Request, res: Response) {
 }
     public static listPage(req: Request, res: Response) {
 
-      const data = req.body as provinceModel;
+      const  data = req.body as provinceModel;
       const page = data.page ? data.page : 1;
       const limit = data.limit ? data.limit : 10;
+      
       const offset = (page - 1) * limit;
 
       const sqlCount = "select count(*) as count from province";

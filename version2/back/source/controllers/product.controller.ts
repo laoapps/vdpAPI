@@ -94,7 +94,9 @@ console.log(data);
       const data = req.body as productModel;
       const page = data.page ? data.page : 1;
       const limit = data.limit ? data.limit : 10;
+      
       const offset = (page - 1) * limit;
+
 
       const sqlCount = "select count(*) as count from product";
       // const sqlPage = `select * from product limit ${limit} offset ${offset} `;

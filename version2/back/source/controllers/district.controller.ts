@@ -93,7 +93,9 @@ console.log(data);
       const data = req.body as districtModel;
       const page = data.page ? data.page : 1;
       const limit = data.limit ? data.limit : 10;
+      
       const offset = (page - 1) * limit;
+
 
       const sqlCount = "select count(*) as count from dristric";
       const sqlPage = `select dr_id,dr_name,dr_name_en,pr_name,pr_name_en from dristric d inner join province p on d.pr_id=p.pr_id limit ${limit} offset ${offset} `;

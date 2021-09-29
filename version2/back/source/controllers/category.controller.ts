@@ -90,9 +90,12 @@ console.log(data);
     public static listPage(req: Request, res: Response) {
 
       const data = req.body as categoryModel;
+
       const page = data.page ? data.page : 1;
       const limit = data.limit ? data.limit : 10;
+
       const offset = (page - 1) * limit;
+
 
       const sqlCount = "select count(*) as count from category";
       const sqlPage = `select * from category limit ${limit} offset ${offset} `;
