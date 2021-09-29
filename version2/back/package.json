@@ -1,6 +1,6 @@
 {
-  "name": "api",
-  "version": "1.0.0",
+  "name": "vdp_manager",
+  "version": "1.0.1",
   "description": "",
   "main": "source/server.ts",
   "scripts": {

@@ -92,9 +92,18 @@ console.log(data);
     public static listPage(req: Request, res: Response) {
 
       const data = req.body as productModel;
-      const page = data.page ? data.page : 1;
-      const limit = data.limit ? data.limit : 10;
+      let page = 1;
+      let limit = 10;
+      if(data){
+        page = data.page ? data.page : 1;
+        limit = data.limit ? data.limit : 10;
+      }else{
+          page = req.query['page']?Number(req.query['page']):page;
+          limit =  req.query['limit']?Number(req.query['limit']):limit;
+      }
+      
       const offset = (page - 1) * limit;
+
 
       const sqlCount = "select count(*) as count from product";
       // const sqlPage = `select * from product limit ${limit} offset ${offset} `;

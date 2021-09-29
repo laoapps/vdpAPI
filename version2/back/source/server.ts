@@ -8,7 +8,7 @@ import path from 'path';
 
 export let app: Application = api;
 
-app.use(express.json({ limit: '500mb' }));
+app.use(express.json());
 app.use(express.urlencoded({ limit: '500mb', extended: true, parameterLimit: 50000 }));
 
 app.use(cors());
@@ -30,7 +30,8 @@ app.get('/api/v1', (req: express.Request, res: express.Response) => {
     //res.send(PrintSucceeded({}, 'api version 1 is working!'));
     let get = app._router.stack.filter((r: any) => r.route && r.route.methods.get).map((r: any) => r.route.path);
     let post = app._router.stack.filter((r: any) => r.route && r.route.methods.post).map((r: any) => r.route.path);
-    res.send({ get: get, post: post });
+    res.send({ get: get, post: post,body:req.body });
+
 });
 let PORT = 23000;
 app.listen(PORT, '0.0.0.0', () => {

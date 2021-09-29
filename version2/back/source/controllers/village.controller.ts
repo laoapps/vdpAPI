@@ -99,9 +99,18 @@ public static getVillage_by_districtID(req: Request, res: Response) {
     public static listPage(req: Request, res: Response) {
 
       const data = req.body as villageModel;
-      const page = data.page ? data.page : 1;
-      const limit = data.limit ? data.limit : 10;
+      let page = 1;
+      let limit = 10;
+      if(data){
+        page = data.page ? data.page : 1;
+        limit = data.limit ? data.limit : 10;
+      }else{
+          page = req.query['page']?Number(req.query['page']):page;
+          limit =  req.query['limit']?Number(req.query['limit']):limit;
+      }
+      
       const offset = (page - 1) * limit;
+
 
       const sqlCount = "select count(*) as count from village";
       const sqlPage = `select vill_id,vill_name,vill_name_en,dr_name,dr_name_en from village v inner join dristric d on v.dr_id=d.dr_id limit ${limit} offset ${offset} `;
