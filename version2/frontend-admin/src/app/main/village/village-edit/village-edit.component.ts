@@ -28,11 +28,14 @@ export class VillageEditComponent implements OnInit {
   }
 
   async loadvill(id:any){
+    console.log("vid1",id);
     const data={
      vill_id:id  
     }
 
   this.v.listAllSbyvid(data).subscribe(res=>{
+    console.log("vid",res);
+    
     this.vill_id=res.data[0].vill_id
     this.vill_name=res.data[0].vill_name
     this.vill_name_en=res.data[0].vill_name_en

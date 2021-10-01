@@ -95,7 +95,7 @@ public static listPage_by(req: Request, res: Response) {
     const limit = data.limit ? data.limit : 10;
     const offset = (page - 1) * limit;
 
-    const sqlCount = "select count(*) as count from village";
+    const sqlCount = "select count(*) as count from village v inner join dristric d on v.dr_id=d.dr_id where vill_name like'%"+data.vill_name+"%' or vill_name_en like'%"+data.vill_name_en+"%' or dr_name like'%"+data.dr_name+"%' or dr_name_en like'%"+data.dr_name_en+"%'";
     const sqlPage = `select vill_id,vill_name,vill_name_en,dr_name,dr_name_en from village v inner join dristric d on v.dr_id=d.dr_id where vill_name like'%${data.vill_name}%' or vill_name_en like'%${data.vill_name_en}%' or dr_name like'%${data.dr_name}%' or dr_name_en like'%${data.dr_name_en}%' limit ${limit} offset ${offset} `;
 
     Databases.selectPage(sqlCount, sqlPage).then(result => {
@@ -107,9 +107,7 @@ public static listPage_by(req: Request, res: Response) {
       const data = req.body as villageModel;
       const page = data.page ? data.page : 1;
       const limit = data.limit ? data.limit : 10;
-      
       const offset = (page - 1) * limit;
-
 
       const sqlCount = "select count(*) as count from village";
       const sqlPage = `select vill_id,vill_name,vill_name_en,dr_name,dr_name_en from village v inner join dristric d on v.dr_id=d.dr_id limit ${limit} offset ${offset} `;

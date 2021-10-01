@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProvinceService } from 'src/service/province.service';
 import Swal from 'sweetalert2'
 import { ProvinceEditComponent } from '../province-edit/province-edit.component';
+import { PagingationService } from 'src/service/pagingation.service';
 
 @Component({
   selector: 'app-province-list',
@@ -13,7 +14,8 @@ import { ProvinceEditComponent } from '../province-edit/province-edit.component'
 export class ProvinceListComponent implements OnInit {
 
   public page:number=1
-  public limit : number=10
+  public getpage:number
+  public limit : number
   public keyword: string = ""
  
   public pr_name:string=""
@@ -24,8 +26,9 @@ export class ProvinceListComponent implements OnInit {
 
 
   public province_list:Array<any> = [];
+  public btnList:any;
 
-  constructor(private route:Router,private ProvinceService:ProvinceService) { }
+  constructor(private route:Router,private pageService:PagingationService,private ProvinceService:ProvinceService) { }
 
 
   ngOnInit(): void {
@@ -52,6 +55,9 @@ export class ProvinceListComponent implements OnInit {
     console.log(res);
 
           this.province_list = res.data.rows
+          this.count = res.data.count  
+          const getPageTotal = Math.ceil(res.data.count / 2);
+          this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
           
   });
   }
@@ -75,7 +81,10 @@ export class ProvinceListComponent implements OnInit {
    
           this.province_list = res.data.rows
           this.count = res.data.count
-          
+          const getPageTotal = Math.ceil(res.data.count / 2);
+          this.btnList = this.pageService.pageingtations(data.page, getPageTotal);    
+          console.log( this.btnList);
+             
   });
 }
 
@@ -124,4 +133,48 @@ async delete(data:any){
   });
 }
 
+//==================================paging==========================================
+clickPage(info:any)
+{  
+  // let p=info.page
+  console.log(info);
+  
+  if(!this.pr_id && !this.pr_name && !this.pr_name_en){
+    const data = {
+      page:info,
+      limit:this.limit
+    }
+    this.ProvinceService.listPageprovince(data).subscribe(res => {
+      this.province_list = res.data.rows
+      // const getPageTotal = Math.ceil(res.data.pageTotal / 5);
+       const getPageTotal = Math.ceil(res.data.count / 2);
+      this.count = res.data.count  
+
+      this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
+      console.log( this.btnList);
+});
+  }else{
+    const data={
+      page:info,
+      limit:this.limit,
+
+      pr_name_en:this.pr_name_en,
+      pr_name:this.pr_name,
+      pr_id:this.pr_id
+    }
+      console.log(data);
+      
+  this.ProvinceService.listPageprovince_by(data).subscribe(res=>{
+    console.log(res);
+
+          this.province_list = res.data.rows
+          this.count = res.data.count  
+          const getPageTotal = Math.ceil(res.data.count / 3);
+          this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
+          
+  });
+  } 
+  
+ 
+}
 }

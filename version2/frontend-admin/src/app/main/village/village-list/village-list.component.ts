@@ -2,6 +2,7 @@ import { Component, OnInit ,Input, Output,ViewChild} from '@angular/core';
 
 import { Router } from '@angular/router';
 import { VillageService } from 'src/service/village.service';
+import { PagingationService } from 'src/service/pagingation.service';
 import Swal from 'sweetalert2'
 import { VillageEditComponent } from '../village-edit/village-edit.component';
 
@@ -24,7 +25,7 @@ export class VillageListComponent implements OnInit {
 
   public village_list:Array<any> = [];
 
-  constructor(private route:Router,private v:VillageService) { }
+  constructor(private route:Router,private pageService:PagingationService ,private v:VillageService) { }
 
 
   ngOnInit(): void {
@@ -41,8 +42,48 @@ export class VillageListComponent implements OnInit {
   this.v.listPagevillage(data).subscribe(res=>{
           this.village_list = res.data.rows    
           this.count = res.data.count    
+          const getPageTotal = Math.ceil(res.data.count / 6);
+          this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
+         console.log( this.btnList);
              
   });
+}
+public btnList:any;
+clickPage(info:number)
+{    
+  if(!this.vill_name && !this.vill_name_en && !this.dr_name && !this.dr_name_en){
+  const data = {
+    page:info,
+    limit:this.limit
+  }
+  this.v.listPagevillage(data).subscribe(res => {
+          this.village_list = res.data.rows
+          this.count = res.data.count  
+           const getPageTotal = Math.ceil(res.data.count / 6);
+           this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
+          console.log( this.btnList);
+  });
+  }else{
+    const data={
+      page:info,
+      limit:this.limit,
+  
+      vill_name:this.vill_name,
+      vill_name_en:this.vill_name_en,
+      dr_name:this.dr_name,
+      dr_name_en:this.dr_name_en
+    }
+      
+  this.v.listPagevill_by(data).subscribe(res=>{
+  
+  
+          this.village_list = res.data.rows
+          this.count = res.data.count  
+          const getPageTotal = Math.ceil(res.data.count / 6);
+          this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
+          
+  });
+  }
 }
 
 searchByid_name(e: KeyboardEvent) {
@@ -65,6 +106,9 @@ this.v.listPagevill_by(data).subscribe(res=>{
 
 
         this.village_list = res.data.rows
+        this.count = res.data.count  
+        const getPageTotal = Math.ceil(res.data.count / 6);
+        this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
         
 });
 }

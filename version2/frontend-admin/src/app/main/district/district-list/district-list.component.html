@@ -33,7 +33,7 @@
                 <table class="table table-striped mt-4">
                   <thead>
                       <tr class="font-weight-bold">
-                          <td>ລຳດັບ</td>
+                          <!-- <td>ລຳດັບ</td> -->
                           <td>ລະຫັດເມືອງ</td>
                           <td>ຊື່ເມືອງ</td>
                           <td>ຊື່ເມືອງ(ອັງກິດ)</td>
@@ -44,7 +44,7 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let item of district_list ; let i = index">
-                          <td>{{i+1}}</td>
+                          <!-- <td>{{i+1}}</td> -->
                           <td>{{item.dr_id}}</td>
                           <td>{{item.dr_name}}</td>
                           <td>{{item.dr_name_en}}</td>
@@ -63,7 +63,7 @@
   
   
   
-               <div class="col-md-12 mt-3">
+               <!-- <div class="col-md-12 mt-3">
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
                         <li class="page-item">
@@ -83,7 +83,17 @@
                         </li>
                         </ul>
                     </nav>
-                </div>
+                </div> -->
+                <nav aria-label="Page">
+                    <!-- <ul class="pagination mt-5 d-flex justify-content-center"> -->
+                    <ul class="pagination mt-5 d-flex justify-content-center">
+                     
+                      <li class="page-item" *ngFor="let btn of btnList">
+                          <button class="page-link" (click)="clickPage(btn.page)">{{btn.name}}</button>
+                      </li>
+                     
+                    </ul>
+                  </nav>
 
   
   

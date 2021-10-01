@@ -93,9 +93,7 @@ console.log(data);
       const data = req.body as districtModel;
       const page = data.page ? data.page : 1;
       const limit = data.limit ? data.limit : 10;
-      
       const offset = (page - 1) * limit;
-
 
       const sqlCount = "select count(*) as count from dristric";
       const sqlPage = `select dr_id,dr_name,dr_name_en,pr_name,pr_name_en from dristric d inner join province p on d.pr_id=p.pr_id limit ${limit} offset ${offset} `;
@@ -111,7 +109,7 @@ console.log(data);
       const limit = data.limit ? data.limit : 10;
       const offset = (page - 1) * limit;
 
-      const sqlCount = "select count(*) as count from dristric";
+      const sqlCount = "select count(*) as count from dristric d inner join province p on d.pr_id=p.pr_id where dr_name like'%"+data.dr_name+"%' or dr_name_en like'%"+data.dr_name_en+"%' or pr_name like'%"+data.pr_name+"%' or pr_name_en like'%"+data.pr_name_en+"%'";
       const sqlPage = `select dr_id,dr_name,dr_name_en,pr_name,pr_name_en from dristric d inner join province p on d.pr_id=p.pr_id where dr_name like'%${data.dr_name}%' or dr_name_en like'%${data.dr_name_en}%' or pr_name like'%${data.pr_name}%' or pr_name_en like'%${data.pr_name_en}%' limit ${limit} offset ${offset} `;
 
       Databases.selectPage(sqlCount, sqlPage).then(result => {

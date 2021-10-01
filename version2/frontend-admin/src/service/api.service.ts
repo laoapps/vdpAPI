@@ -11,10 +11,10 @@ export class APIService {
   }
   protected getBaseUrl(): string {
     //  return 'http://192.168.1.122:8080/inventory-management/sign-in';
-    //  return 'http://localhost:9599/inventory/';
+     return 'http://localhost:9599/inventory/';
   
     //  return 'http://laotracking.com:23000/';
-    return location.protocol + '//' + location.host+'/api/';
+    // return location.protocol + '//' + location.host+'/api/';
   
   }
 

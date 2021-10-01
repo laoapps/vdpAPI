@@ -2,6 +2,7 @@ import { Component, OnInit ,Input, Output,ViewChild} from '@angular/core';
 
 import { Router } from '@angular/router';
 import { DistrictService } from 'src/service/district.service';
+import { PagingationService } from 'src/service/pagingation.service';
 import Swal from 'sweetalert2'
 import { DistrictEditComponent } from '../district-edit/district-edit.component';
 
@@ -24,7 +25,7 @@ export class DistrictListComponent implements OnInit {
 
   public district_list:Array<any> = [];
 
-  constructor(private route:Router,private d:DistrictService) { }
+  constructor(private route:Router,private pageService:PagingationService,private d:DistrictService) { }
 
 
   ngOnInit(): void {
@@ -40,11 +41,52 @@ export class DistrictListComponent implements OnInit {
     }
   this.d.listPagedistrict(data).subscribe(res=>{
           this.district_list = res.data.rows
-          this.count=res.data.count    
-             console.log("data",res);
-             console.log("count", this.count);
+          this.count=res.data.count   
+          const getPageTotal = Math.ceil(res.data.count / 6);
+          this.btnList = this.pageService.pageingtations(data.page, getPageTotal); 
+            //  console.log("data",res);
+            //  console.log("count", this.count);
              
   });
+}
+public btnList:any;
+clickPage(info:number)
+{    
+  if(!this.dr_name && !this.dr_name_en && !this.pr_name && !this.pr_name_en){
+    const data = {
+      page:info,
+      limit:this.limit
+    }
+    this.d.listPagedistrict(data).subscribe(res => {
+            this.district_list = res.data.rows
+             const getPageTotal = Math.ceil(res.data.count / 6);
+             this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
+            console.log( this.btnList);
+    });
+  }else{
+    const data={
+      page:info,
+      limit:this.limit,
+  
+      dr_name:this.dr_name,
+      dr_name_en:this.dr_name_en,
+      pr_name:this.pr_name,
+      pr_name_en:this.pr_name_en
+    }
+      
+  this.d.listPagedis_by(data).subscribe(res=>{
+  
+  
+          this.district_list = res.data.rows
+          this.count = res.data.count  
+          const getPageTotal = Math.ceil(res.data.count / 6);
+          this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
+          
+          
+          
+  });
+  }
+  
 }
 
 searchByid_name(e: KeyboardEvent) {
@@ -67,8 +109,9 @@ this.d.listPagedis_by(data).subscribe(res=>{
 
 
         this.district_list = res.data.rows
-        this.count=res.data.count  
-        console.log("data1",this.count);
+        this.count = res.data.count  
+        const getPageTotal = Math.ceil(res.data.count / 6);
+        this.btnList = this.pageService.pageingtations(data.page, getPageTotal);
         
         
         

@@ -83,10 +83,10 @@ public static listPage_by(req: Request, res: Response) {
 
     const data = req.body as provinceModel;
     const page = data.page ? data.page : 1;
-    const limit = data.limit ? data.limit : 10;
+    const limit = data.limit ? data.limit : 2;
     const offset = (page - 1) * limit;
 
-    const sqlCount = "select count(*) as count from province";
+    const sqlCount = "select count(*) as count from province where pr_name like'%"+data.pr_name+"%' or pr_name_en like'%"+data.pr_name_en+"%'";
     const sqlPage = `select * from province where pr_name like'%${data.pr_name}%' or pr_name_en like'%${data.pr_name_en}%' or pr_id like'%${data.pr_id}%' limit ${limit} offset ${offset} `;
 
     Databases.selectPage(sqlCount, sqlPage).then(result => {
@@ -95,10 +95,9 @@ public static listPage_by(req: Request, res: Response) {
 }
     public static listPage(req: Request, res: Response) {
 
-      const  data = req.body as provinceModel;
+      const data = req.body as provinceModel;
       const page = data.page ? data.page : 1;
-      const limit = data.limit ? data.limit : 10;
-      
+      const limit = data.limit ? data.limit : 2;
       const offset = (page - 1) * limit;
 
       const sqlCount = "select count(*) as count from province";
