@@ -3,17 +3,13 @@ import express from 'express';
 import cors from 'cors';
 import * as bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import api from './api/api';
-import path from 'path';
+import app from './api/api';
 
-export let app: Application = api;
 
-app.use(express.json());
-app.use(express.urlencoded({  extended: false }));
+// export let app: Application = api;
 
 app.use(cors());
 app.use(cookieParser());
-app.use('/static', express.static(path.join(__dirname, 'img')));
 
 // <==  my API ==>
 // app.use('/api', api)

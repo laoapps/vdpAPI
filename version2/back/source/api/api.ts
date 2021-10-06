@@ -9,8 +9,13 @@ import { StaffConroller } from '../controllers/staff.controller';
 import { provinceConroller } from '../controllers/province.controller';
 import { districtConroller } from '../controllers/district.controller';
 import { villageConroller } from '../controllers/village.controller';
+import path from 'path';
 
 const app: Application = express();
+app.use(express.json({ limit: '500mb' }));
+app.use(express.urlencoded({ limit: '500mb', extended: true, parameterLimit: 50000 }));
+app.use('/static', express.static(path.join(__dirname, 'img')));
+
 
 //<=== Login ===>
 app.post('/login', AuthorizeController.logIn);

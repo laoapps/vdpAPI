@@ -82,7 +82,10 @@ console.log(data);
   public static getDistrict_by_provinceID(req: Request, res: Response) {
 
     const data = req.body as districtModel;
-
+        console.log(req.body);
+        console.log(req.params);
+        console.log(req.query);
+        console.log(req.headers);
         const sql = `select dr_id,dr_name from dristric d inner join province p on d.pr_id=p.pr_id where d.pr_id='${data.pr_id}'`;
         Databases.selectOne(sql).then(result => {
             res.send(result)
