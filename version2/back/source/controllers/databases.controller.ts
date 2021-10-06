@@ -10,7 +10,7 @@ export class Databases {
                 const params = {
                     user: EDB.dbuser,
                     password: EDB.dbpass,
-                    host: EDB.dbhost,
+                    host: process.env.DATABASE_HOST||EDB.dbhost,
                     database: EDB.dbname
                 };
 

@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  vdpapi:
+    build: . 
+    container_name: vdpapi
+    
+    ports:
+      - 23000:23000
+    environment:
+      - DATABASE_HOST=host.docker.internal
+    volumes:
+      - .:/app
+    networks:
+      - public
+      - private
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=@5martH67
+    volumes:
+      - db-data:/var/lib/mysql
+      - ../database/vdp.sql:/docker-entrypoint-initdb.d/1-initdb.sql
+     # - ./initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+    networks:
+      - private
+      - public
+    ports:
+      - "3306:3306"
+    #entrypoint: sh -c "chmod +x /docker-entrypoint-initdb.d/initdb.sh;/docker-entrypoint-initdb.d/initdb.sh"
+    #entrypoint: ["sh", "/docker-entrypoint-initdb.d/initdb.sh"]
+networks:
+  public:
+  private:
+volumes:
+  db-data:

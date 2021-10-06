@@ -148,13 +148,13 @@ app.post('/listAllSbyvid',  villageConroller.listAllSbyvid);
 
 app.post('/getVillage_by_districtID',  villageConroller.getVillage_by_districtID);
 
-app.post('/listPagevill_by',  villageConroller.listPage_by);
-app.post('/listPagevillage',  villageConroller.listPage);
-app.post('/listAllvillage',  villageConroller.listAll);
-app.post('/getAutoIDvillage',  villageConroller.getAutoIDvillage);
-app.post('/listAllSbyvid',  villageConroller.listAllSbyvid);
+app.get('/listPagevill_by',  villageConroller.listPage_by);
+app.get('/listPagevillage',  villageConroller.listPage);
+app.get('/listAllvillage',  villageConroller.listAll);
+app.get('/getAutoIDvillage',  villageConroller.getAutoIDvillage);
+app.get('/listAllSbyvid',  villageConroller.listAllSbyvid);
 
-app.post('/getVillage_by_districtID',  villageConroller.getVillage_by_districtID);
+app.get('/getVillage_by_districtID',  villageConroller.getVillage_by_districtID);
 
 export = app;
 
