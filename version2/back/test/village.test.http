@@ -1,29 +1,16 @@
 
 
 @version = 
-@h = localhost
+@h = laotracking.com
 @path = 
 @p = 23000
 
 
-GET   http://{{h}}:{{p}}/listAllvillage HTTP/1.1
+POST   http://{{h}}:{{p}}/getDistrict_by_provinceID HTTP/1.1
 Content-Type: application/json
 Token:11111111
 Authorization:dba123456
 
 { 
-    "id":"",
-    "uuid":"",
-    "isActive":true,
-    "createdAt":"",
-    "updatedAt":"",
-     "storeUuid":"9a522396-e52d-4952-8872-8b46c95b2931",
-    "address":"test",
-    "road":"road ",
-    "village":"vill",
-    "district":"dist",
-    "province":"p",
-    "country":"la",
-    "description":"new",
-    "location":""
+    "pr_id":1
 }
