@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-mysql -u root -p @5martH67 < ./docker-entrypoint-initdb.d/1-initdb.sql
+mysql -u root -p 8iyblLfEamXBdZ6U < ./docker-entrypoint-initdb.d/1-initdb.sql

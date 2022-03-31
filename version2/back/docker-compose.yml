@@ -3,7 +3,6 @@ services:
   vdpapi:
     build: . 
     container_name: vdpapi
-    
     ports:
       - 23000:23000
     environment:
@@ -13,18 +12,24 @@ services:
     networks:
       - public
       - private
-    depends_on:
-      - mariadb
+    # depends_on:
+    #   - mariadb
   mariadb:
     image: mariadb
-    command: '--default-authentication-plugin=mysql_native_password'
+    # command: '--default-authentication-plugin=mysql_native_password'
+    command: --skip-grant-tables # to reset root password
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=@5martH67
+      - DATABASE_HOST=host.docker.internal
+      - MARIADB_ROOT_PASSWORD=8iyblLfEamXBdZ6U
+      - MYSQL_ROOT_PASSWORD=8iyblLfEamXBdZ6U
+      - MYSQL_PASSWORD=8iyblLfEamXBdZ6U
+      # - MYSQL_USER=citizix_user
+      # - MYSQL_DATABASE=citizix_db
     volumes:
       - db-data:/var/lib/mysql
-      - ../database/vdp.sql:/docker-entrypoint-initdb.d/1-initdb.sql
-     # - ./initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - ./database/vdp.sql:/docker-entrypoint-initdb.d/1-initdb.sql
+      - ./initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
     networks:
       - private
       - public

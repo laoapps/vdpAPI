@@ -1,3 +1,13 @@
+CREATE DATABASE IF NOT EXISTS strapi_dbk;
+use strapi_dbk;
+CREATE USER 'adminstrapi_dbk'@'%' IDENTIFIED BY 'mVXQhy6yTRdTfrgh';
+GRANT ALL PRIVILEGES ON strapi_dbk.* TO 'adminstrapi_dbk'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 -- phpMyAdmin SQL Dump
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
@@ -9,7 +19,7 @@
 CREATE DATABASE IF NOT EXISTS dbvdp;
 use dbvdp;
 CREATE USER 'adminvdp'@'%' IDENTIFIED BY '!1234GG8o';
-GRANT ALL PRIVILEGES ON *.* TO 'adminvdp'@'%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON dbvdp.* TO 'adminvdp'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
