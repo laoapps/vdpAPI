@@ -1,5 +1,5 @@
 #!/bin/bash
-ionic build --prod
+ng build
 # docker-compose --build
 docker-compose down
 docker-compose up -d
