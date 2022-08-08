@@ -13,7 +13,7 @@ export class APIService {
     //  return 'http://192.168.1.122:8080/inventory-management/sign-in';
     //  return 'http://localhost:9599/inventory/';
   
-    return 'https://vdp-api.laoapps.com/api/';
+    return 'https://vdp-api.laoapps.com/';
     // return location.protocol + '//' + location.host+'/api/';
   
   }
