@@ -1,5 +1,4 @@
-import { Application } from 'express';
-import express from 'express';
+
 import { UserConroller } from '../controllers/user.controller';
 import { AuthorizeController } from '../controllers/authorize.controller';
 import { categoryConroller } from '../controllers/category.controller';
@@ -9,15 +8,11 @@ import { StaffConroller } from '../controllers/staff.controller';
 import { provinceConroller } from '../controllers/province.controller';
 import { districtConroller } from '../controllers/district.controller';
 import { villageConroller } from '../controllers/village.controller';
-import path from 'path';
+import { Application } from 'express';
 
-const app: Application = express();
-app.use(express.json({ limit: '500mb' }));
-app.use(express.urlencoded({ limit: '500mb', extended: true, parameterLimit: 50000 }));
-app.use('/static', express.static(path.join(__dirname, 'img')));
-
-
-//<=== Login ===>
+export class API{
+    constructor(app:Application){
+        //<=== Login ===>
 app.post('/login', AuthorizeController.logIn);
 
 //<=== User ===>
@@ -161,7 +156,10 @@ app.get('/listAllSbyvid',  villageConroller.listAllSbyvid);
 
 app.get('/getVillage_by_districtID',  villageConroller.getVillage_by_districtID);
 
-export = app;
+    }
+}
+
+
 
 
 
