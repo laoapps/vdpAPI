@@ -1,5 +1,5 @@
 #!/bin/bash
-ng build
+ng build --prod
 # docker-compose --build
 docker-compose down
 docker-compose up -d
