@@ -11,7 +11,7 @@ export class Databases {
                     user: EDB.dbuser,
                     password: EDB.dbpass,
                     host: process.env.DATABASE_HOST||EDB.dbhost,
-                    database: EDB.dbname
+                    database: EDB.dbname,
                 };
 
                 const connection = mysql.createConnection(params);
