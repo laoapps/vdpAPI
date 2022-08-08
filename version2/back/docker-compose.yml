@@ -2,6 +2,7 @@ version: "3.7"
 services:
   vdpapi:
     build: . 
+    restart: always
     container_name: vdpapi
     ports:
       - 23000:23000

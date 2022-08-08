@@ -3,7 +3,7 @@ services:
   vdp-admin.laoapps.com:
     container_name: vdp-admin.laoapps.com
     build: .
-    restart: on-failure:5
+    restart: always
     environment:
       - DATABASE_HOST=host.docker.internal
       - PORT=44449
