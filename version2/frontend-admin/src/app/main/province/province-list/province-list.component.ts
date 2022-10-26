@@ -109,7 +109,7 @@ async  remove(data:any){
 async delete(data:any){
   console.log('myid',data);
   const mydata={
-    id:data
+    pr_id:data
   }
   this.ProvinceService.deleteprovince(mydata).subscribe(res=>{
 
