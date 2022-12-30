@@ -18,7 +18,7 @@ services:
   #phpmyadmin
   phpmyadmin:
     depends_on:
-      - db
+      - mysqldb
     image: phpmyadmin/phpmyadmin
     restart: always
     environment:
