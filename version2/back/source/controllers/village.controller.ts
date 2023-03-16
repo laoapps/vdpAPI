@@ -16,7 +16,7 @@ console.log(data);
             res.send(Service.respon([], validate, 0));
         } else {
 
-            const sqlcatName = `select * from village where vill_name='${data.vill_name}'`;
+            const sqlcatName = `select * from village where vill_name='${data.vill_name}' and dr_id = '${data.dr_id}'`;
             ValidateController.alreadyExist(sqlcatName).then((result) => {
 
                 if (result) {
@@ -45,7 +45,7 @@ console.log(data);
           res.send(Service.respon([], validate, 0));
           // 
       } else {
-          const sqlcategory = `select * from village where vill_name='${data.vill_name}' and vill_id!='${data.vill_id}'`;
+          const sqlcategory = `select * from village where vill_name='${data.vill_name}' and vill_id!='${data.vill_id}' and dr_id = '${data.dr_id}'`;
           ValidateController.alreadyExist(sqlcategory).then((result) => {
 
               if (result) {
