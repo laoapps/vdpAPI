@@ -16,7 +16,7 @@ console.log(data);
             res.send(Service.respon([], validate, 0));
         } else {
 
-            const sqlcatName = `select * from village where vill_name='${data.vill_name}'`;
+            const sqlcatName = `select * from village where vill_name='${data.vill_name}' and dr_id = '${data.dr_id}'`;
             ValidateController.alreadyExist(sqlcatName).then((result) => {
 
                 if (result) {
@@ -45,7 +45,7 @@ console.log(data);
           res.send(Service.respon([], validate, 0));
           // 
       } else {
-          const sqlcategory = `select * from village where vill_name='${data.vill_name}' and vill_id!='${data.vill_id}'`;
+          const sqlcategory = `select * from village where vill_name='${data.vill_name}' and vill_id!='${data.vill_id}' and dr_id = '${data.dr_id}'`;
           ValidateController.alreadyExist(sqlcategory).then((result) => {
 
               if (result) {
@@ -83,7 +83,7 @@ public static getVillage_by_districtID(req: Request, res: Response) {
 
     const data = req.body as villageModel;
 
-        const sql = `select vill_id,vill_name from village v inner join dristric d on v.dr_id=d.dr_id where v.dr_id='${data.dr_id}'`;
+        const sql = `select vill_id,vill_name from village v inner join dristric d on v.dr_id=d.dr_id where v.dr_id ='${data.dr_id}'`;
         Databases.selectOne(sql).then(result => {
             res.send(result)
         });

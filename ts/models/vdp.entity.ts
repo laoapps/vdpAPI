@@ -75,5 +75,5 @@ x.beforeUpdate(async (vdp,options)=>{
     vdp.createdAt = vdp.previous().createdAt;
     vdp.updatedAt=new Date();
 })
-return x;
+return x as any;
 }
