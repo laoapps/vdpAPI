@@ -1,4 +1,6 @@
 # Logs
+www
+.history
 logs
 *.log
 npm-debug.log*

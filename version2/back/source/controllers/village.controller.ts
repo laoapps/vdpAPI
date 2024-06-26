@@ -83,7 +83,7 @@ public static getVillage_by_districtID(req: Request, res: Response) {
 
     const data = req.body as villageModel;
 
-        const sql = `select vill_id,vill_name from village v inner join dristric d on v.dr_id=d.dr_id where v.dr_id ='${data.dr_id}'`;
+        const sql = `select vill_id,vill_name from village v inner join dristric d on v.dr_id=d.dr_id where v.dr_id='${data.dr_id}'`;
         Databases.selectOne(sql).then(result => {
             res.send(result)
         });

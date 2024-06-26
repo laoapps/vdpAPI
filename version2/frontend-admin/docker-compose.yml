@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  vdp-admin.laoapps.com:
+    container_name: vdp-admin.laoapps.com
+    build: .
+    restart: always
+    environment:
+      - DATABASE_HOST=host.docker.internal
+      - PORT=44449
+    ports:
+      - 44449:44449
+    volumes:
+      - ./www:/app/www
+      - ./static:/app/
+volumes:
+  back-notused:
+  db-data:
